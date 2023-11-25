@@ -1,0 +1,15 @@
+env: "local"   # prod
+
+nats:
+  stream: "ORDERS.*"
+  max_reconnect: 60
+  reconnect_wait: 2s
+  address: "nats://nats:4222"
+
+postgres:
+  address: "postgres:5432"
+  user: "service"
+  database: "wb_app"
+
+service:
+  port: 8081

@@ -1,0 +1,15 @@
+version: 3
+
+# Позволяет подгрузить переменные окружения, что нужны для работы сервиса
+dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
+
+tasks:
+  run:
+    cmds:
+      - go run cmd/service/app.go
+    desc: "Starts the L0 service"
+
+  migrate:
+    cmds:
+      - ./bin/migrate -database {{.CON_SCHEMA}} -path db/migrations {{.action}}
+    desc: "Applies the migrations on postgres server"
