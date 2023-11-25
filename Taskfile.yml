@@ -6,8 +6,12 @@ dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
 tasks:
   run:
     cmds:
-      - go run cmd/service/app.go
+      - ./app
     desc: "Starts the L0 service"
+  build:
+    cmds:
+      - go build -o app cmd/service/app.go
+    desc: "Builds the service"
 
   migrate:
     cmds:

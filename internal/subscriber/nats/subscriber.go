@@ -28,13 +28,14 @@ func (s *Subscriber) Subscribe() (subscriber.Entry, error) {
 	}
 
 	// Form name for new subscriber
-	entryName := fmt.Sprintf("reader0%d", s.subID.Load())
+	entryName := fmt.Sprintf("nats_reader0%d", s.subID.Load())
 	subEntry, err := se.js.PullSubscribe(s.cfg.Stream, entryName)
 	if err != nil {
 		return nil, err
 	}
 	se.subscription = subEntry
 
+	s.subID.Add(1)
 	return &se, nil
 }
 
